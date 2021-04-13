@@ -1,119 +1,41 @@
-# Things
+# A React App with webpack 5, TypeScript, Less Modules, and Jest
 
-- created `public/index.html`
+## To install dependencies
 
-  ```html
-  <!-- sourced from https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html -->
-  <!DOCTYPE html>
-  <html>
-    <head>
-      <meta charset="UTF-8" />
-      <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, shrink-to-fit=no"
-      />
-      <title>React Starter</title>
-    </head>
+```bash
+yarn
+```
 
-    <body>
-      <div id="root"></div>
-      <noscript> You need to enable JavaScript to run this app. </noscript>
-      <script src="../dist/bundle.js"></script>
-    </body>
-  </html>
-  ```
+## To run locally
 
-- `npm install --save-dev @babel/core@7.1.0 @babel/cli@7.1.0 @babel/preset-env@7.1.0 @babel/preset-react@7.0.0`
+```bash
+yarn dev
+```
 
-  - `babel-core` is the main babel package — We need this for babel to do any transformations on our code.
-  - `babel-cli` allows you to compile files from the command line
-  - [`preset-react`](https://babeljs.io/docs/en/babel-preset-react) and [`preset-env`](https://babeljs.io/docs/en/babel-preset-env) are both presets that transform specific flavors of code — in this case, the env preset allows us to transform ES6+ into more traditional javascript and the react preset does the same, but with JSX instead.
+## To run tests
 
-- created `.babelrc`
+```bash
+yarn test
+```
 
-  ```
-  {
-    "presets": ["@babel/env", "@babel/preset-react"]
-  }
-  ```
+## To build
 
-- `npm install --save-dev webpack@4.19.1 webpack-cli@3.1.1 webpack-dev-server@3.1.8 style-loader@0.23.0 css-loader@1.0.0 babel-loader@8.0.2`
+```bash
+yarn build:dev
+```
 
-- created `webpack.config.js`
+or
 
-  ```js
-  const path = require('path');
-  const webpack = require('webpack');
+```bash
+yarn build:prod
+```
 
-  module.exports = {
-    entry: './src/index.js',
-    mode: 'development',
-    module: {
-      rules: [
-        {
-          test: /\.(js|jsx)$/,
-          exclude: /(node_modules|bower_components)/,
-          loader: 'babel-loader',
-          options: { presets: ['@babel/env'] },
-        },
-        {
-          test: /\.css$/,
-          use: ['style-loader', 'css-loader'],
-        },
-      ],
-    },
-    resolve: { extensions: ['*', '.js', '.jsx'] },
-    output: {
-      path: path.resolve(__dirname, 'dist/'),
-      publicPath: '/dist/',
-      filename: 'bundle.js',
-    },
-    devServer: {
-      contentBase: path.join(__dirname, 'public/'),
-      port: 3000,
-      publicPath: 'http://localhost:3000/dist/',
-      hotOnly: true,
-    },
-    plugins: [new webpack.HotModuleReplacementPlugin()],
-  };
-  ```
+## History/Steps
 
-- `npm i react@16.5.2 react-dom@16.5.2`
-
-- created `src/index.js`
-
-  ```js
-  import React from 'react';
-  import ReactDOM from 'react-dom';
-  import App from './App.js';
-
-  ReactDOM.render(<App />, document.getElementById('root'));
-  ```
-
-- created `src/App.js`
-
-  ```js
-  import React, { Component } from 'react';
-  import './App.css';
-
-  class App extends Component {
-    render() {
-      return (
-        <div className="App">
-          <h1> Hello, World! </h1>
-        </div>
-      );
-    }
-  }
-
-  export default App;
-  ```
-
-- created `src/App.css`
-
-  ```css
-  .App {
-    margin: 1rem;
-    font-family: Arial, Helvetica, sans-serif;
-  }
-  ```
+- [Setting up the React app](https://github.com/ashleemboyer/webpack-typescript-jest-less/commit/af60ed8678e349ba6596890f795419011b2bebf8)
+- [Upgrading webpack and loaders](https://github.com/ashleemboyer/webpack-typescript-jest-less/commit/4ee89641b96c6999916b4fade7eddeff78acee1f)
+- [Adding Less](https://github.com/ashleemboyer/webpack-typescript-jest-less/commit/71c6b5349601d5997b7b24cb06bd312d2b426403)
+- [Adding a component with a Less module for styles](https://github.com/ashleemboyer/webpack-typescript-jest-less/commit/8aa2c11281473b91f7af1144270a13ce6af89c7c)
+- [Converting everything to TypeScript](https://github.com/ashleemboyer/webpack-typescript-jest-less/commit/2a3c383606f747aad8da73b408c9f37dd3e4f2a3)
+- [Adding Jest and Enzyme](https://github.com/ashleemboyer/webpack-typescript-jest-less/commit/7cca2ab4b584dd1c760b56d4f73e502fd761d901)
+- [Adding webpack rule for .module.less files](https://github.com/ashleemboyer/webpack-typescript-jest-less/commit/e20cec48cc9f525bcc534decb80aafec03d96f87)
