@@ -23,13 +23,29 @@ module.exports = {
       },
       {
         test: /\.less$/,
+        exclude: /\.module\.less$/,
         use: ['style-loader', 'css-loader', 'less-loader'],
+      },
+      {
+        test: /\.module\.less$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentName: '[path][name]__[local]--[hash:base64:5]',
+              },
+            },
+          },
+          'less-loader',
+        ],
       },
     ],
   },
   resolve: {
     extensions: ['*', '.js', '.jsx', '.ts', '.tsx'],
-    modules: 'node_modules',
+    modules: ['node_modules'],
   },
   output: {
     path: path.resolve(__dirname, 'dist/'),
