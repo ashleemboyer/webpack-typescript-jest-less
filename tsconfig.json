@@ -7,6 +7,6 @@
     "outDir": "./dist/",
     "target": "es5",
     "moduleResolution": "node",
-    "esModuleInterop": false
+    "esModuleInterop": true
   }
 }
