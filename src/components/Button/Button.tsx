@@ -1,9 +1,14 @@
 import * as React from 'react';
 import styles from './Button.module.less';
 
-const Button = () => (
-  <button className={styles.Button} onClick={() => console.log('clicked!')}>
-    click me!
+interface ButtonProps {
+  children: React.ReactNode;
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+const Button: React.FC<ButtonProps> = ({ children, onClick }) => (
+  <button className={styles.Button} onClick={onClick}>
+    {children}
   </button>
 );
 
