@@ -5,7 +5,7 @@ import './App.less';
 const App: React.FC = () => (
   <div className="App">
     <h1> Hello, World!</h1>
-    <Button />
+    <Button onClick={() => console.log('Clicked!')}>Click me!</Button>
   </div>
 );
 

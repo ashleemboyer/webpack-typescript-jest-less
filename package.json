@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:dev": "webpackDev",
+    "build:dev": "npm-run-all removeDist webpackDev copyIndex",
     "build:prod": "npm-run-all removeDist webpackProd copyIndex",
     "removeDist": "rm -rf dist",
     "copyIndex": "cp public/index.html dist/index.html",
     "dev": "webpack serve --mode development",
+    "start": "npm-run-all build:dev dev",
     "test": "jest",
     "webpackDev": "webpack --mode development",
     "webpackProd": "webpack --mode production"
@@ -22,17 +23,22 @@
     ],
     "moduleNameMapper": {
       "\\.(css|less)$": "identity-obj-proxy"
+    },
+    "transform": {
+      "^.+\\.(ts|tsx)$": "ts-jest",
+      "^.+\\.(js|jsx)$": "babel-jest"
     }
   },
   "devDependencies": {
     "@babel/cli": "^7.1.0",
-    "@babel/core": "^7.1.0",
-    "@babel/preset-env": "^7.1.0",
+    "@babel/core": "^7.14.0",
+    "@babel/preset-env": "^7.14.1",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.13.0",
     "@types/enzyme": "^3.10.8",
     "@types/enzyme-adapter-react-16": "^1.0.6",
-    "@types/jest": "^26.0.22",
+    "@types/jest": "^26.0.23",
+    "babel-jest": "^26.6.3",
     "babel-loader": "^8.0.2",
     "css-loader": "^5.2.1",
     "enzyme": "^3.11.0",
@@ -43,6 +49,7 @@
     "less-loader": "^8.1.0",
     "npm-run-all": "^4.1.5",
     "style-loader": "^2.0.0",
+    "ts-jest": "^26.5.6",
     "webpack": "^5.32.0",
     "webpack-cli": "^4.6.0",
     "webpack-dev-server": "^3.1.8"
@@ -50,6 +57,7 @@
   "dependencies": {
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.3",
+    "moment": "^2.29.1",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "ts-loader": "^8.1.0",
